@@ -50,7 +50,6 @@ public class LocationService extends Service implements LocationListener {
     List<Address> addresses;
     String address = "";
     // GPSTracker class
-    GPSTracker gps;
 
     boolean isGPSEnabled = false;
 
