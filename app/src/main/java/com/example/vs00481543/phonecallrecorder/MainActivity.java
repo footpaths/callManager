@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
        // pref.edit().putInt("serialNumData", 1).apply();
 
         //rAdapter.notifyDataSetChanged();
-        PackageManager p = getPackageManager();
+       /* PackageManager p = getPackageManager();
         ComponentName componentName = new ComponentName(this,  MainActivity.class);
-        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);*/
     }
 
     @Override

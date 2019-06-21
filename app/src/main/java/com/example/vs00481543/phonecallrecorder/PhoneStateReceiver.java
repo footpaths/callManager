@@ -46,7 +46,7 @@ public class PhoneStateReceiver extends BroadcastReceiver {
                 String state = extras.getString(TelephonyManager.EXTRA_STATE);
                 Log.d(TAG, " onReceive: " + state);
 
-                Intent intentLocation = new Intent(context, LocationService.class);
+                Intent intentLocation = new Intent(context, MyService.class);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     context.startForegroundService(intentLocation);

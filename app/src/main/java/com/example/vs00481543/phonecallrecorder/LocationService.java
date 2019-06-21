@@ -80,7 +80,6 @@ public class LocationService extends Service implements LocationListener {
 
     @SuppressLint("MissingPermission")
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "vao roi", Toast.LENGTH_SHORT).show();
         Config.context = this;
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         fn_getlocation();
@@ -186,7 +185,7 @@ public class LocationService extends Service implements LocationListener {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
                 if (locationManager != null) {
                     location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     if (location != null) {
@@ -222,13 +221,32 @@ public class LocationService extends Service implements LocationListener {
         }
 
     }
-    private void fn_update(Location location){
+
+    private void fn_update(Location location) {
         geocoder = new Geocoder(this, Locale.getDefault());
         try {
             addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             address = addresses.get(0).getAddressLine(0);
             Toast.makeText(this, "testPro: " + address, Toast.LENGTH_LONG).show();
+            locationManager.removeUpdates(this);
+
+//            endGPS();
+
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void endGPS()
+    {
+
+        try
+        {
+            locationManager.removeUpdates(this);
+            locationManager=null;
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
     }
